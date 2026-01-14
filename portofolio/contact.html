@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NØIR DRIP | Contact</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ================= GENERAL ================= */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Montserrat',sans-serif;
+}
+body{
+  background: #fff;
+  color:#111;
+}
+a{text-decoration:none;color:inherit;}
+
+/* ================= NAVBAR ================= */
+header{
+  position:fixed;
+  top:0;
+  width:100%;
+  padding:15px 50px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(0,0,0,.8);
+  color: #fff;
+  backdrop-filter:blur(10px);
+  z-index:1000;
+  animation:navDrop 1s ease forwards;
+}
+@keyframes navDrop{
+  from{transform:translateY(-80px);opacity:0}
+  to{transform:none;opacity:1}
+}
+header h1{
+  font-size:26px;
+  font-weight:700;
+}
+nav a{
+  margin-left:25px;
+  font-weight:600;
+  position:relative;
+}
+nav a::after{
+  content:'';
+  position:absolute;
+  left:0;
+  bottom:-4px;
+  width:0;
+  height:2px;
+  background:#fff;
+  transition:.4s;
+}
+nav a:hover::after{width:100%;}
+
+/* ================= CONTACT ================= */
+.contact-section{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:140px 20px 60px;
+}
+
+.contact-container{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+  max-width:1000px;
+  width:100%;
+  margin:0 auto;
+}
+
+/* ================= BOXES ================= */
+.contact-box{
+  background:linear-gradient(135deg,#111,#1a1a1a);
+  border-radius:20px;
+  padding:30px;
+  box-shadow:0 20px 60px rgba(0,0,0,.8);
+  color:#fff;
+  overflow:hidden;
+  opacity:0;
+}
+
+/* ================= MAP BOX ================= */
+.map-box{
+  animation:slideFadeLeft 1s forwards 0.3s;
+}
+.map-container{
+  overflow:hidden;
+  border-radius:15px;
+  animation:floatMap 6s ease-in-out infinite alternate;
+  transition: transform 0.5s ease;
+}
+.map-container:hover{
+  transform: scale(1.05);
+}
+.map-container iframe{
+  width:100%;
+  height:400px;
+  border:0;
+  border-radius:15px;
+}
+@keyframes floatMap{
+  0%{ transform: translateY(0); }
+  50%{ transform: translateY(-10px); }
+  100%{ transform: translateY(0); }
+}
+@keyframes slideFadeLeft{
+  0%{opacity:0; transform:translateX(-50px);}
+  100%{opacity:1; transform:translateX(0);}
+}
+
+/* ================= FORM BOX ================= */
+.form-box{
+  animation:formAppear 1s forwards 0.5s;
+}
+@keyframes formAppear{
+  0%{
+    opacity:0;
+    transform:scale(0.9) translateX(50px);
+  }
+  60%{
+    opacity:1;
+    transform:scale(1.05) translateX(0);
+  }
+  100%{
+    opacity:1;
+    transform:scale(1) translateX(0);
+  }
+}
+
+/* FORM ELEMENTS */
+.contact-box input,
+.contact-box textarea{
+  width:100%;
+  padding:12px 14px;
+  margin-bottom:15px;
+  background:#111;
+  border:1px solid #444;
+  color:#fff;
+  outline:none;
+  border-radius:8px;
+  opacity:0;
+  transform:translateY(20px);
+  animation:inputFadeUp 0.8s forwards;
+  transition: all 0.3s ease, box-shadow 0.5s ease;
+}
+.contact-box input:nth-child(1){animation-delay:0.6s;}
+.contact-box input:nth-child(2){animation-delay:0.8s;}
+.contact-box input:nth-child(3){animation-delay:1s;}
+.contact-box input:nth-child(4){animation-delay:1.2s;}
+.contact-box textarea{animation-delay:1.4s;}
+.contact-box button{
+  width:100%;
+  padding:14px;
+  background:#fff;
+  color:#000;
+  border:none;
+  font-weight:700;
+  cursor:pointer;
+  transition:.3s;
+  border-radius:8px;
+  opacity:0;
+  transform:translateY(20px);
+  animation:inputFadeUp 0.8s forwards;
+  animation-delay:1.6s;
+  box-shadow: 0 0 0 rgba(255,255,255,0);
+}
+.contact-box button:hover{
+  background:#e0e0e0;
+  transform:scale(1.05);
+  box-shadow:0 0 20px #fcfdfd, 0 0 40px #5fe6e6, 0 0 60px #6bdce4;
+}
+
+/* ================= FOCUS GLOW EFFECT ================= */
+.contact-box input:focus,
+.contact-box textarea:focus{
+  border-color:#fcfdfd;
+  box-shadow:0 0 10px 0 0 40px #e8f0f0, 0 0 60px #6bdce4;
+  background:#1a1a1a;
+}
+
+/* ================= INPUT ANIMATION ================= */
+@keyframes inputFadeUp{
+  0%{opacity:0; transform:translateY(20px);}
+  100%{opacity:1; transform:translateY(0);}
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:900px){
+  .contact-container{
+    grid-template-columns:1fr;
+  }
+  .contact-box{
+    transform:translateY(50px);
+    animation:none;
+    opacity:1;
+  }
+  .map-container iframe{
+    height:250px;
+  }
+}
+
+/* ================= FOOTER ================= */
+footer{
+  background:#000;
+  padding:60px 5% 30px;
+  color: #fff;
+  text-align:center;
+  opacity:0;
+  transform:translateY(50px);
+  animation:footerSlide 1s forwards 0.5s;
+}
+@keyframes footerSlide{
+  0%{opacity:0; transform:translateY(50px);}
+  100%{opacity:1; transform:translateY(0);}
+}
+footer h2{
+  letter-spacing:4px;
+  margin-bottom:10px;
+}
+footer p{
+  opacity:.6;
+  margin-bottom:20px;
+}
+footer .social-links{
+  display:flex;
+  justify-content:center;
+  gap:20px;
+}
+footer .social-links a{
+  position:relative;
+}
+footer .social-links a::after{
+  content:''; position:absolute; left:0; bottom:-4px; width:0; height:2px; background:#fff; transition:.4s;
+}
+footer .social-links a:hover::after{width:100%;}
+
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header>
+  <h1>NØIR DRIP</h1>
+  <nav>
+    <a href="home.html">Home</a>
+    <a href="shpo.html">Shop</a>
+    <a href="re.html">Reviews</a>
+            <a href="aboutus.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<!-- CONTACT SECTION -->
+<section class="contact-section">
+  <div class="contact-container">
+
+    <!-- MAP BOX (LEFT) -->
+    <div class="contact-box map-box">
+      <h2>OUR LOCATION</h2>
+      <br>
+      <br>
+      <div class="map-container">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3310.703913322983!2d72.82918411520723!3d31.52036938142207!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391905c9d80c0d0f%3A0xb4ed7f77e42309e8!2sLahore%2C%20Pakistan!5e0!3m2!1sen!2s!4v1705089652035!5m2!1sen!2s"
+          allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+
+    <!-- FORM BOX (RIGHT) -->
+    <div class="contact-box form-box">
+      <h2>CONTACT US</h2>
+      <br>
+      <br>
+      <form>
+        <input type="text" placeholder="Your Name" required>
+        <br>
+        <input type="text" placeholder="Your Number" required>
+        <br>
+        <input type="text" placeholder="Your Address" required>
+        <br>
+        <input type="email" placeholder="Your Email" required>
+        <br>
+        <textarea rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <h2>NØIR DRIP</h2>
+  <p>© 2026 All Rights Reserved</p>
+  <div class="social-links">
+    <a href="https://www.instagram.com/">Instagram</a>
+    <a href="https://x.com/">Twitter</a>
+    <a href="https://www.facebook.com/">Facebook</a>
+  </div>
+</footer>
+
+</body>
+</html>

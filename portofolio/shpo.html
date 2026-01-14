@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NØIR DRIP</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Montserrat',sans-serif;}
+body{background:#111;color:#fff;}
+a{text-decoration:none;color:inherit;}
+
+/* ================= NAVBAR ================= */
+header{
+  position:fixed;
+  top:0;
+  width:100%;
+  padding:15px 50px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(0,0,0,.75);
+  backdrop-filter:blur(10px);
+  z-index:1000;
+  animation:navDrop 1.2s ease forwards;
+}
+@keyframes navDrop{
+  from{transform:translateY(-80px);opacity:0}
+  to{transform:none;opacity:1}
+}
+header h1{
+  font-size:28px;
+  font-weight:700;
+  animation:logoSlide 1s ease forwards;
+}
+@keyframes logoSlide{
+  from{opacity:0; transform:translateX(-50px);}
+  to{opacity:1; transform:translateX(0);}
+}
+nav a{
+  margin-left:25px;
+  font-weight:600;
+  position:relative;
+  font-size:16px;
+}
+nav a::after{
+  content:''; position:absolute; left:0; bottom:-4px;
+  width:0; height:2px; background:#fff; transition:.4s;
+}
+nav a:hover::after{width:100%;}
+
+/* ================= HERO ================= */
+.hero{
+  height:100vh;
+  position:relative;
+}
+
+.hero video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.hero .overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.55);
+}
+
+.hero-content{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  text-align:center;
+  color:#fff;
+}
+
+.hero-content h1{
+  font-size:56px;
+}
+
+.hero-content p{
+  font-size:18px;
+  opacity:.9;
+}
+
+/* ================= CARDS ================= */
+.cards-section{
+  padding:120px 40px;
+}
+
+.cards-section h2{
+  text-align:center;
+  margin-bottom:50px;
+}
+
+.cards-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:30px;
+}
+
+.card{
+  background:#fff;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 15px 40px rgba(0,0,0,.12);
+  transition:.4s;
+  text-align:center;
+  padding-bottom:20px;
+}
+
+.card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 30px 70px rgba(0,0,0,.25);
+}
+
+.card img{
+  width:100%;
+  height:230px;
+  object-fit:cover;
+}
+
+.card h3{
+  margin:15px 10px 5px;
+  font-size:16px;
+}
+
+.card p{
+  opacity:.7;
+  margin-bottom:12px;
+}
+
+.card a button{
+  padding:10px 26px;
+  background:#111;
+  color:#fff;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.card a button:hover{
+  background:#333;
+  transform:scale(1.05);
+}
+
+/* ================= FOOTER ================= */
+footer{
+  background:#111;
+  padding:60px 20px;
+  text-align:center;
+  color:#fff;
+}
+
+footer p{
+  opacity:.6;
+}
+footer .social-links{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:20px;
+}
+footer .social-links a{
+  color:#fff;
+  font-weight:600;
+  transition:.3s;
+  position:relative;
+  font-size:14px;
+}
+footer .social-links a::after{
+  content:''; position:absolute; left:0; bottom:-3px;
+  width:0; height:2px; background:#fff; transition:.4s;
+}
+footer .social-links a:hover::after{width:100%;}
+/* ================= RESPONSIVE ================= */
+@media(max-width:768px){
+  header{
+    flex-direction:column;
+    gap:12px;
+    padding:15px 20px;
+  }
+
+  nav{
+    justify-content:center;
+    gap:18px;
+  }
+
+  .hero{height:90vh;}
+  .cards-section{padding:100px 20px;}
+}
+
+@media(max-width:480px){
+  header h1{font-size:22px;}
+  .hero{height:85vh;}
+  .cards-grid{grid-template-columns:1fr;}
+}
+/* ================= RESPONSIVE ================= */
+@media(max-width:1024px){
+  header{padding:15px 30px;}
+  nav a{margin-left:20px;}
+  .cards-grid{gap:25px;}
+  .video-grid{gap:20px;}
+}
+@media(max-width:768px){
+  header{flex-direction:column; gap:10px;}
+  nav{display:flex; flex-wrap:wrap; justify-content:center;}
+  nav a{margin:8px 15px;}
+  .hero-content{left:50%; text-align:center; transform:translate(-50%, -50%);}
+  .cards-section{padding:70px 5%;}
+  .video-section{padding:70px 5%;}
+  .video-grid video{height:200px;}
+}
+@media(max-width:480px){
+  header h1{font-size:22px;}
+  nav a{font-size:14px; margin:5px 10px;}
+  .hero-content h2{font-size:22px;}
+  .hero-content p{font-size:14px;}
+  .cards-grid{grid-template-columns:1fr; gap:20px;}
+  .card img{height:180px;}
+  .card button{font-size:12px; padding:8px 20px;}
+}
+</style>
+
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>NØIR DRIP</h1>
+  <nav>
+    <a href="home.html">Home</a>
+    <a href="shpo.html">Shop</a>
+    <a href="re.html">Reviews</a>
+        <a href="aboutus.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <video src="https://video-previews.elements.envatousercontent.com/files/37c11bbb-f500-4c05-9abe-67cb544e49c0/video_preview_h264.mp4" autoplay muted loop></video>
+  <div class="overlay"></div>
+  <div class="hero-content">
+    <h1>OUR COLLECTIONS</h1>
+    <p>Premium Collection With Classic Vibes</p>
+  </div>
+</section>
+
+<section class="cards-section">
+<h2>Accessories</h2>
+
+<div class="cards-grid">
+
+<!-- ROW 1 -->
+<div class="card">
+<img src="https://img.fantaskycdn.com/1bfd813daea2428b59ddc4d12af249fb_1024x.jpg">
+<h3>Man Jacket</h3>
+<p>$40</p>
+<a href="contact.html"><button>Add to Cart</button></a>
+</div>
+
+<div class="card">
+<img src="https://i.pinimg.com/1200x/a6/84/89/a684897fc592bd30f76626a4406d6aba.jpg">
+<h3>Women Jacket</h3>
+<p>$80</p>
+<a href="contact.html"><button>Add to Cart</button></a>
+</div>
+
+<div class="card">
+<img src="https://i.pinimg.com/1200x/2c/3b/ab/2c3bab9654dc995343f594c901346567.jpg">
+<h3>Men Jeans</h3>
+<p>$50</p>
+<a href="contact.html"><button>Add to Cart</button></a>
+</div>
+
+<div class="card">
+<img src="https://i.pinimg.com/1200x/28/6c/e8/286ce87302d454a88f6342b68ce204db.jpg">
+<h3>Sneakers</h3>
+<p>$70</p>
+<a href="contact.html"><button>Add to Cart</button></a>
+</div>
+
+<!-- ROW 2 -->
+<div class="card">
+<img src="https://i.pinimg.com/1200x/7d/5b/23/7d5b234e03971b294d50eb9bd6085b5b.jpg">
+<h3>Man Caps</h3>
+<p>$40</p>
+<a href="contact.html"><button>Add to Cart</button></a>
+</div>
+
+<div class="card">
+<img src="https://i.pinimg.com/1200x/64/01/a4/6401a4cf31af7918f657ee5ad6a3c4d1.jpg">
+<h3>Women Caps</h3>
+<p>$80</p>
+<a href="contact.html"><button>Add to Cart</button></a>
+</div>
+
+<div class="card">
+<img src="https://i.pinimg.com/1200x/e0/1f/1e/e01f1e0e44370bd0361cc1a0c06e0fa6.jpg">
+<h3>Man Scarf</h3>
+<p>$20</p>
+<a href="contact.html"><button>Add to Cart</button></a>
+</div>
+
+<div class="card">
+<img src="https://i.pinimg.com/736x/11/2f/90/112f902a79bcdf0aa493308b3e22dc00.jpg">
+<h3>Women Scarf</h3>
+<p>$60</p>
+<a href="contact.html"><button>Add to Cart</button></a>
+</div>
+
+<div class="card">
+<img src="https://i.pinimg.com/736x/ca/9f/3e/ca9f3effafe8448f37f9f650fc3666ed.jpg">
+<h3>Man Masks</h3>
+<p>$70</p>
+<a href="contact.html"><button>Add to Cart</button></a>
+</div>
+
+<div class="card">
+<img src="https://i.pinimg.com/736x/8c/d0/f0/8cd0f0720f5031e17cbbbe500f0bfabb.jpg">
+<h3>Women Masks</h3>
+<p>$90</p>
+<a href="contact.html"><button>Add to Cart</button></a>
+</div>
+
+<div class="card">
+<img src="https://i.pinimg.com/1200x/3e/48/89/3e4889406dc0fe65c396649894aee4b2.jpg">
+<h3>Man Belt</h3>
+<p>$40</p>
+<a href="contact.html"><button>Add to Cart</button></a>
+</div>
+
+<div class="card">
+<img src="https://i.pinimg.com/1200x/74/06/c5/7406c5cbbc56c6db703c52287e3bd5fc.jpg">
+<h3>Women Belt</h3>
+<p>$45</p>
+<a href="contact.html"><button>Add to Cart</button></a>
+</div>
+
+</div>
+</section>
+
+<footer>
+<h2>NØIR DRIP</h2>
+<p>© 2026 All Rights Reserved</p>
+<br>
+<div class="social-links">
+  <a href="https://instagram.com" target="_blank">Instagram</a>
+  <a href="https://twitter.com" target="_blank">Twitter</a>
+  <a href="https://facebook.com" target="_blank">Facebook</a>
+</div>
+</footer>
+
+</body>
+</html>
+<!--DONE-->

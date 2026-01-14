@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NØIR DRIP</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Montserrat',sans-serif;}
+body{background:#111;color:#fff;}
+a{text-decoration:none;color:inherit;}
+
+/* ================= NAVBAR ================= */
+header{
+  position:fixed;
+  top:0;
+  width:100%;
+  padding:15px 50px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(0,0,0,.75);
+  backdrop-filter:blur(10px);
+  z-index:1000;
+  animation:navDrop 1.2s ease forwards;
+}
+@keyframes navDrop{
+  from{transform:translateY(-80px);opacity:0}
+  to{transform:none;opacity:1}
+}
+header h1{
+  font-size:28px;
+  font-weight:700;
+  animation:logoSlide 1s ease forwards;
+}
+@keyframes logoSlide{
+  from{opacity:0; transform:translateX(-50px);}
+  to{opacity:1; transform:translateX(0);}
+}
+nav a{
+  margin-left:25px;
+  font-weight:600;
+  position:relative;
+  font-size:16px;
+}
+nav a::after{
+  content:''; position:absolute; left:0; bottom:-4px;
+  width:0; height:2px; background:#fff; transition:.4s;
+}
+nav a:hover::after{width:100%;}
+
+/* ================= HERO ================= */
+.hero{height:100vh;position:relative;overflow:hidden;}
+.slide{
+  position:absolute; inset:0;
+  background-size:cover;background-position:center;
+  opacity:0; transform:scale(1.15);
+  transition:opacity 1.2s ease, transform 6s ease;
+}
+.slide.active{opacity:1; transform:scale(1); z-index:1;}
+.overlay{
+  position:absolute; inset:0;
+  background:linear-gradient(to right,rgba(0,0,0,.75),rgba(0,0,0,.35));
+  z-index:2;
+}
+.hero-content{
+  position:absolute; top:50%; left:10%;
+  transform:translateY(-50%);
+  z-index:3;
+}
+.hero-content h2{
+  font-size:clamp(28px, 5vw, 56px);
+  animation:textIn 1.2s forwards;
+}
+.hero-content p{
+  font-size:clamp(14px, 2vw, 18px);
+  animation:textIn 1.2s forwards .3s;
+}
+@keyframes textIn{
+  from{opacity:0; transform:translateY(40px);}
+  to{opacity:1; transform:none;}
+}
+
+/* ================= CARDS ================= */
+.cards-section{
+  padding:110px 5%;
+  background:#f9f9f9;
+  color:#000;
+}
+.cards-section h2{text-align:center;margin-bottom:50px;font-size:clamp(24px,4vw,36px);}
+.cards-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:30px;
+}
+.card{
+  background:#fff;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 10px 30px rgba(0,0,0,.2);
+  transform:translateY(0);
+  transition:transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card.show{transform:none;opacity:1;}
+.card img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  transition:transform 0.6s ease;
+}
+.card:hover{
+  transform:translateY(-10px) scale(1.05);
+  box-shadow:0 25px 50px rgba(0,0,0,.3);
+}
+.card:hover img{transform:scale(1.15);}
+.card .info{
+  padding:15px;
+  text-align:center;
+}
+.card button{
+  margin-top:12px;
+  padding:10px 25px;
+  background:#000;
+  color:#fff;
+  border:none;
+  cursor:pointer;
+  transition:.3s;
+  font-size:14px;
+}
+.card button:hover{
+  background:#333;
+  transform:scale(1.05);
+}
+
+/* ================= VIDEOS ================= */
+.video-section{
+  padding:120px 5%;
+  background-color:black;
+}
+.video-section h2{
+  text-align:center;
+  margin-bottom:50px;
+  font-size:clamp(28px,4vw,36px);
+}
+.video-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:25px;
+}
+.video-grid video{
+  width:100%;
+  height:250px;
+  object-fit:cover;
+  border-radius:20px;
+  box-shadow:0 25px 60px rgba(0,0,0,.8);
+  transform:scale(1.15) translateY(80px);
+  opacity:0;
+  transition:1.2s ease;
+}
+.video-grid video.show{
+  transform:scale(1) translateY(0);
+  opacity:1;
+}
+.video-grid video:hover{
+  transform:scale(1.08);
+}
+
+/* ================= FOOTER ================= */
+footer{
+  background:#000;
+  padding:70px 5% 30px 5%;
+  text-align:center;
+  opacity:0;
+  transform:translateY(140px);
+  transition:1.3s ease;
+}
+footer.show{
+  opacity:1;
+  transform:none;
+}
+footer h2{
+  letter-spacing:4px;
+  margin-bottom:10px;
+  font-size:clamp(20px,4vw,28px);
+}
+footer p{
+  margin-bottom:20px;
+  opacity:.6;
+  font-size:14px;
+}
+footer .social-links{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:20px;
+}
+footer .social-links a{
+  color:#fff;
+  font-weight:600;
+  transition:.3s;
+  position:relative;
+  font-size:14px;
+}
+footer .social-links a::after{
+  content:''; position:absolute; left:0; bottom:-3px;
+  width:0; height:2px; background:#fff; transition:.4s;
+}
+footer .social-links a:hover::after{width:100%;}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:1024px){
+  header{padding:15px 30px;}
+  nav a{margin-left:20px;}
+  .cards-grid{gap:25px;}
+  .video-grid{gap:20px;}
+}
+@media(max-width:768px){
+  header{flex-direction:column; gap:10px;}
+  nav{display:flex; flex-wrap:wrap; justify-content:center;}
+  nav a{margin:8px 15px;}
+  .hero-content{left:50%; text-align:center; transform:translate(-50%, -50%);}
+  .cards-section{padding:70px 5%;}
+  .video-section{padding:70px 5%;}
+  .video-grid video{height:200px;}
+}
+@media(max-width:480px){
+  header h1{font-size:22px;}
+  nav a{font-size:14px; margin:5px 10px;}
+  .hero-content h2{font-size:22px;}
+  .hero-content p{font-size:14px;}
+  .cards-grid{grid-template-columns:1fr; gap:20px;}
+  .card img{height:180px;}
+  .card button{font-size:12px; padding:8px 20px;}
+  .video-grid{grid-template-columns:1fr;}
+  .video-grid video{height:180px;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>NØIR DRIP</h1>
+  <nav>
+    <a href="home.html">Home</a>
+    <a href="shpo.html">Shop</a>
+            <a href="aboutus.html">About</a>
+    <a href="re.html">Reviews</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="slide active" style="background-image:url('https://i.pinimg.com/1200x/0a/d7/31/0ad73174c3d8fbdd38349e2882db0a33.jpg')"></div>
+  <div class="slide" style="background-image:url('https://i.pinimg.com/1200x/9c/fc/2c/9cfc2ccfd4712fd543ce178a64aabfb9.jpg')"></div>
+  <div class="overlay"></div>
+  <div class="hero-content">
+    <h2>Where darkness drips style</h2>
+    <p>Premium Collection With Classic Vibes.</p>
+  </div>
+</section>
+
+<!-- SHOP 1 -->
+<section class="cards-section" id="shop">
+<h2>Man</h2>
+<div class="cards-grid">
+  <div class="card">
+    <img src="https://i.pinimg.com/736x/18/f9/51/18f95168116d86244ecb958e697546c2.jpg">
+    <div class="info">
+      <h3>Hoodie</h3><p>$40</p>
+      <a href="contact.html"><button>Add to Cart</button></a>
+    </div>
+  </div>
+  <div class="card">
+    <img src="https://i.pinimg.com/736x/62/07/d3/6207d36ffebb2935610a7db0a4d8f0e4.jpg">
+    <div class="info">
+      <h3>Jacket</h3><p>$80</p>
+      <a href="contact.html"><button>Add to Cart</button></a>
+    </div>
+  </div>
+  <div class="card">
+    <img src="https://www.errant.dk/cdn/shop/articles/Blog_Errant7_31fa3109-68c3-4379-ae7d-e2b7f8c70789.jpg">
+    <div class="info">
+      <h3>Sneakers</h3><p>$60</p>
+      <a href="contact.html"><button>Add to Cart</button></a>
+    </div>
+  </div>
+  <div class="card">
+    <img src="https://i.pinimg.com/1200x/a2/6c/b4/a26cb4a0dc98c57926c85b297bee7b44.jpg">
+    <div class="info">
+      <h3>Cap</h3><p>$20</p>
+      <a href="contact.html"><button>Add to Cart</button></a>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- VIDEOS -->
+<section class="video-section" id="lux-videos">
+<h2>Our Videos</h2>
+<div class="video-grid">
+<video src="https://assets.mixkit.co/videos/33029/33029-720.mp4" autoplay muted loop></video>
+<video src="https://assets.mixkit.co/videos/9060/9060-720.mp4" autoplay muted loop></video>
+<video src="https://assets.mixkit.co/videos/42581/42581-720.mp4" autoplay muted loop></video>
+</div>
+</section>
+
+<!-- SHOP 2 -->
+<section class="cards-section">
+<h2>Women</h2>
+<div class="cards-grid">
+  <div class="card">
+    <img src="https://i.pinimg.com/1200x/27/42/7f/27427f04e92efe6e61c1cc044dc6d5fd.jpg">
+    <div class="info">
+      <h3>Hoodie</h3><p>$40</p>
+      <a href="contact.html"><button>Add to Cart</button></a>
+    </div>
+  </div>
+  <div class="card">
+    <img src="https://i.pinimg.com/736x/a1/0f/a9/a10fa9a2bd823200360f434371dbe310.jpg">
+    <div class="info">
+      <h3>Jacket</h3><p>$80</p>
+      <a href="contact.html"><button>Add to Cart</button></a>
+    </div>
+  </div>
+  <div class="card">
+    <img src="https://i.pinimg.com/736x/09/6e/4e/096e4e34813acfea121f25c172878e22.jpg">
+    <div class="info">
+      <h3>Sneakers</h3><p>$60</p>
+      <a href="contact.html"><button>Add to Cart</button></a>
+    </div>
+  </div>
+  <div class="card">
+    <img src="https://i.pinimg.com/1200x/1a/4e/2f/1a4e2f1bebddc847fa204b585e13112a.jpg">
+    <div class="info">
+      <h3>Cap</h3><p>$20</p>
+      <a href="contact.html"><button>Add to Cart</button></a>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+<h2>NØIR DRIP</h2>
+<p>© 2026 All Rights Reserved</p>
+<div class="social-links">
+  <a href="https://instagram.com" target="_blank">Instagram</a>
+  <a href="https://twitter.com" target="_blank">Twitter</a>
+  <a href="https://facebook.com" target="_blank">Facebook</a>
+</div>
+</footer>
+
+<script>
+/* HERO SLIDER */
+const slides=document.querySelectorAll('.slide');
+let i=0;
+setInterval(()=>{
+  slides[i].classList.remove('active');
+  i=(i+1)%slides.length;
+  slides[i].classList.add('active');
+},5000);
+
+/* SCROLL ANIMATIONS */
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting) e.target.classList.add('show');
+  });
+},{threshold:.25});
+
+document.querySelectorAll('.card, video, footer').forEach(el=>obs.observe(el));
+</script>
+
+</body>
+</html>
+<!--DONE-->
